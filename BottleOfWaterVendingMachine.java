@@ -1,38 +1,28 @@
 import java.util.List;
 
 public class BottleOfWaterVendingMachine implements VendingMachine {
-    List<BottleOfWatter> bottleOfWatters;
+    private List<Product> productList;
 
-    public BottleOfWaterVendingMachine(List<BottleOfWatter> products) {
-        this.bottleOfWatters = products;
-    }
-
-    public List<BottleOfWatter> getBottleOfWatters() {
-        return bottleOfWatters;
-    }
-
-    public void setBottleOfWatters(List<BottleOfWatter> bottleOfWatters) {
-        this.bottleOfWatters = bottleOfWatters;
+    @Override
+    public void initProducts(List<Product> productList) {
+        this.productList = productList;
     }
 
     @Override
     public Product getProduct(String name) {
-        for (BottleOfWatter item : bottleOfWatters) {
-            if (item.getName().equals(name))
-                return item;
+        for (Product el : productList) {
+            if (el.getName().equals(name))
+                return el;
         }
         return null;
     }
 
     public Product getProduct(String name, double volume) {
-        for (BottleOfWatter bottle : bottleOfWatters) {
-            if (bottle.getName().equals(name) && bottle.getVolume() == volume)
-                return bottle;
+        for (Product el : productList) {
+
+            if (el.getName().equals(name) && ((BottleOfWatter) el).getVolume() == volume)
+                return el;
         }
         return null;
-    }
-
-    public void addBottleOfWater(BottleOfWatter bottleOfWatter) {
-        this.bottleOfWatters.add(bottleOfWatter);
     }
 }
